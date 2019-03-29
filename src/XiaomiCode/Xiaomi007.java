@@ -25,6 +25,9 @@ public class Xiaomi007 {
         return count;
     }
     public static void main(String[] args){
+        String a = "123";
+        System.out.println(a.substring(3).length());
+
         Scanner scan = new Scanner(System.in);
         String line;
         while (scan.hasNextLine()) {
@@ -36,8 +39,8 @@ public class Xiaomi007 {
             for(int i=0;i<numStrs.length;i++){
                 n[i] = Integer.parseInt(numStrs[i]);
             }
-            Xiaomi007 a = new Xiaomi007();
-            System.out.println(a.getLeastMove(numStrs.length-1,n));
+            Xiaomi007 b = new Xiaomi007();
+            System.out.println(b.getLeastMove(numStrs.length-1,n));
         }
     }
 }
