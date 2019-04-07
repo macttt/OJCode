@@ -55,7 +55,8 @@ public class Xiaomi042 {
             line = scan.nextLine().trim();
             String[] str = line.split(",");
             int[][] memo = new int[str[0].length()+1][str[1].length()+1];
-            System.out.println(x042.editDistance(str[0],str[1],memo));
+            System.out.println(x042.editDistanceBottomUp(str[0],str[1]));
+//            System.out.println(x042.editDistance(str[0],str[1],memo));
         }
 
     }
@@ -78,6 +79,57 @@ public class Xiaomi042 {
             memory[n][m] = Math.min(remove, Math.min(replace, add));
             return memory[n][m];
         }
+    }
+
+    //自底向上,外圈多一层，让进入当前状态的形式有三个
+    protected int editDistanceBottomUp(String str1,String str2){
+        int n = str1.length();
+        int m = str2.length();
+        int[][] edit = new int[n+1][m+1];
+        for(int i=n;i>=0;i--){
+            for(int j=m;j>=0;j--){
+                if(i==n){
+                    edit[i][j] = m-j;
+                }else if(j==m){
+                    edit[i][j] = n-i;
+                }else if(str1.charAt(i)==str2.charAt(j)){
+                    edit[i][j] = edit[i+1][j+1];
+                }else{
+                    edit[i][j] = Math.min(edit[i+1][j],Math.min(edit[i][j+1],edit[i+1][j+1]))+1;
+                }
+            }
+        }
+        return edit[0][0];
+    }
+
+    public static int editDistanceBottomUp_effective(String s1, String s2){
+        int[] strg = new int[s2.length() + 1];
+        for(int i = s1.length();i >= 0;i--){
+            int save = 0;
+            for(int j = s2.length();j >= 0;j--){
+                if(i == s1.length()){
+                    strg[j] = s2.length() - j;
+                    continue;
+                }
+                if(j == s2.length()){
+                    save = strg[j];
+                    strg[j] = s1.length() - i;
+                    continue;
+                }
+                if(s1.charAt(i) == s2.charAt(j)){
+                    int temp = save;
+                    save = strg[j];
+                    strg[j] = temp;
+                }else{
+                    int insert = strg[j + 1];
+                    int delete = strg[j];
+                    int replace = save;
+                    save = strg[j];
+                    strg[j] = Math.min(insert, Math.min(delete, replace)) + 1;
+                }
+            }
+        }
+        return strg[0];
     }
 }
 
