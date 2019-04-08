@@ -60,7 +60,8 @@ public class Heap {
         return this;
     }
 
-    public Heap findToBeInsertNode(Heap root){
+    //
+    private Heap findToBeInsertNode(Heap root){
         LinkedList<Heap> heapQueue = new LinkedList();
         Heap nowNode = root;
         while(nowNode.rightNode!=null&& nowNode.leftNode!=null){
