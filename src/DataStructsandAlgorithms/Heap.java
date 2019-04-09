@@ -9,12 +9,29 @@ public class Heap {
     public int value=0;
     public Heap leftNode;
     public Heap rightNode;
+    private int count = 0;
+
+    public int getCount(){
+        return this.count;
+    }
+
+    private void addCount(){
+        this.count++;
+    }
 
     //构造函数
     public Heap(int value){
         this.value = value;
         leftNode = null;
         rightNode = null;
+        count++;
+    }
+
+    public Heap(){
+        this.value = 0;
+        leftNode = null;
+        rightNode = null;
+        count++;
     }
 
     //堆化函数（二叉树实现方式)(递归、自顶向下)
@@ -57,6 +74,7 @@ public class Heap {
         }else{
             toBeInsertNode.leftNode = newNode;
         }
+        this.addCount();
         return this;
     }
 
@@ -64,6 +82,7 @@ public class Heap {
     private Heap findToBeInsertNode(Heap root){
         LinkedList<Heap> heapQueue = new LinkedList();
         Heap nowNode = root;
+        heapQueue.add(nowNode);
         while(nowNode.rightNode!=null&& nowNode.leftNode!=null){
             heapQueue.add(nowNode.leftNode);
             heapQueue.add(nowNode.rightNode);
@@ -78,8 +97,18 @@ public class Heap {
         }
     }
 
-    //pop出堆顶最小的元素，重做堆
+    //pop出堆顶最小的元素，把最后一个元素放到堆顶，删除最后一个元素，重做堆
     public int deleteMin(Heap root){
-        return 0;
+        int tmp = root.value;
+
+
+        this.count--;
+        return tmp;
+    }
+
+    //获取堆的完全二叉树的最后一个子节点
+    private Heap getLastNode(Heap root){
+//        Heap  findToBeInsertNode(root);
+        return new Heap();
     }
 }
