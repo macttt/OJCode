@@ -11,9 +11,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * 从excel文件中读取数据
+ * 从excel文件操作工具
  * */
 public class excelUtils {
+
+    /** 从excel中操作数据*/
     public static Workbook getWorkBook(MultipartFile file) {
         //获得文件名
         String fileName = file.getOriginalFilename();
@@ -24,10 +26,10 @@ public class excelUtils {
             InputStream is = file.getInputStream();
             //根据文件后缀名不同(xls和xlsx)获得不同的Workbook实现类对象
             if (fileName.endsWith("xls")) {
-                //2003
+                //excel2003
                 workbook = new HSSFWorkbook(is);
             } else if (fileName.endsWith("xlsx")) {
-                //2007
+                //excel2007
                 workbook = new XSSFWorkbook(is);
             }
         } catch (IOException e) {
