@@ -2,11 +2,8 @@ package DataStructsandAlgorithms;
 
 
 import Utils.CommonUtil;
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 
 
 /**
@@ -16,19 +13,26 @@ import java.util.LinkedList;
 public class HeapByArray {
     public static void main(String[] args){
         int[] anArray = {5,3,1,6,1,3,6,8,6,4,3,4,9,10,24,13,11,14};
-        LinkedList test = new LinkedList();
-        int[] Allcnt = new int[10000000];
-        Double d;
-        for(int i=0;i<10000000;i++){
-            d = Math.random()*100000000;
-            Allcnt[i] = d.intValue();
-//            System.out.println(Allcnt[i]);
-        }
+        HeapByArray heap = new HeapByArray(anArray.length+1);
+        for(int i=0;i<anArray.length;i++) heap.insert(anArray[i]);
+        heap.printHeapArray();
+        System.out.println(heap.popMax());
+        heap.printHeapArray();
+        int[] tobeSorted = Arrays.copyOf(anArray, anArray.length);
+        heapSort(tobeSorted);
+//        LinkedList test = new LinkedList();
+//        int[] Allcnt = new int[10000000];
+//        Double d;
+//        for(int i=0;i<10000000;i++){
+//            d = Math.random()*100000000;
+//            Allcnt[i] = d.intValue();
+////            System.out.println(Allcnt[i]);
+//        }
 //        int[] a = test.toArray();
-        HeapByArray instance = new HeapByArray();
-        instance.copyArray(Allcnt);
+//        HeapByArray instance = new HeapByArray();
+//        instance.copyArray(Allcnt);
 //        instance.printHeapArray();
-        System.out.println("个数："+instance.heapArray[0]+"，第一个:"+instance.heapArray[1]+",2:"+instance.heapArray[2]+",3:"+instance.heapArray[3]);
+//        System.out.println("个数："+instance.heapArray[0]+"，第一个:"+instance.heapArray[1]+",2:"+instance.heapArray[2]+",3:"+instance.heapArray[3]);
     }
 
     private int heapSize;
@@ -64,7 +68,7 @@ public class HeapByArray {
         if(heapArray.length<=source.length){
             heapArray = new int[source.length+1];
         }
-        heapSize = source.length;
+        heapSize = source.length+1;
         for(int i=0;i<source.length;i++) heapArray[i+1] = source[i];
         heapArray[0] = source.length;
         this.maxHeapfy();
@@ -81,8 +85,16 @@ public class HeapByArray {
         System.out.println("总花费时间："+(end-start));
     }
 
+    public static void maxHeapfy(int[] input){
+        for(int i=(input.length-1)/2;i>=0;i--){
+            buildStaticHeap(input,i);
+        }
+    }
+
+
     //适应标准化接口的内部函数，按照下标造堆
-    //把当前节点作为根节点造堆
+    //把当前节点作为根节点造堆，时间复杂度为O(n)
+    /** 这里的下滤可以看作让当前待堆化根节点空出来，看看下面有没有要上来的，直接顶上来*/
     private void buildInClassHeap(int index){
         int child,parent,X;
         parent = index;
@@ -99,14 +111,30 @@ public class HeapByArray {
         heapArray[parent] = X;
     }
 
+    private static void buildStaticHeap(int[] heap,int index){
+        int child,parent,X;
+        parent = index;
+        X = heap[parent];
+        for (parent=index;parent*2<=heap.length-1;parent = child){
+            child = parent*2;
+            if(child!=heap.length-1&&heap[child]<heap[child+1]) child++;
+            if(X>=heap[child]){
+                break;
+            }else{
+                heap[parent] = heap[child];
+            }
+        }
+        heap[parent] = X;
+    }
+
     //判断是否为空堆
     public boolean isEmpty(){
-        return this.heapArray[0]==0?true:false;
+        return this.heapArray[0]==0;
     }
 
     //判断是否已满
     public boolean isFull(){
-        return this.heapArray[0]==heapArray.length-1?true:false;
+        return this.heapArray[0]==heapArray.length-1;
     }
 
     //pop出堆顶节点（大顶堆为最大节点）
@@ -135,7 +163,8 @@ public class HeapByArray {
     }
 
     //向堆中插入数据
-    public void insertHeap(int num){
+    //时间复杂度为O(logn)
+    public void insert(int num){
         if(this.isFull()){
             System.out.println("Heap is full!");
             return;
@@ -143,16 +172,32 @@ public class HeapByArray {
         this.heapArray[0]++;
         this.heapArray[heapArray[0]] = num;
         int index = heapArray[0];
-        while (index>1){
-            if(heapArray[index/2]<num) heapArray[index] = heapArray[index/2];
-            index /= 2;
+        int parent = index/2;
+        while(heapArray[parent]<num&&parent>0){
+            heapArray[index] = heapArray[parent];
+            index = parent;
+            parent/=2;
         }
-
+        heapArray[index] = num;
     }
+
 
     //打印堆内节点
     public void printHeapArray(){
-        int[] toBePrinted = Arrays.copyOfRange(this.heapArray,1,heapArray.length-1);
+        int[] toBePrinted = Arrays.copyOfRange(this.heapArray,1,heapArray[0]+1);
         CommonUtil.printArray(toBePrinted);
+    }
+
+    /**堆排序（将数组堆化后，让最大/小的堆顶元素与最后的节点交换，再堆化剩余数组，重复操作） */
+    public static void heapSort(int[] toBeSorted){
+        maxHeapfy(toBeSorted);
+        CommonUtil.printArray(toBeSorted);
+//        int lenth = toBeSorted.length;
+//        int tmp;
+//        for(int i=0;i<toBeSorted.length;i++){
+//            tmp = toBeSorted[0];
+//            toBeSorted[0] = toBeSorted[lenth-1-i];
+//            toBeSorted[lenth-1-i] = tmp;
+//        }
     }
 }
