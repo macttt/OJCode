@@ -1,6 +1,7 @@
 package Utils;
 
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 /**
  * 普通工具类
@@ -31,6 +32,9 @@ public class CommonUtil {
 
     /** 用于查看java源代码，熟悉代码用测试函数*/
     public static void lookSource(){
+
         HashMap map = new HashMap();
+        PriorityQueue heap = new PriorityQueue();
+
     }
 }
