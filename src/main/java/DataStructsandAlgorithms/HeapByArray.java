@@ -21,13 +21,17 @@ public class HeapByArray {
         int[] tobeSorted = Arrays.copyOf(anArray, anArray.length);
         heapSort(tobeSorted);
 //        LinkedList test = new LinkedList();
-//        int[] Allcnt = new int[10000000];
-//        Double d;
-//        for(int i=0;i<10000000;i++){
-//            d = Math.random()*100000000;
-//            Allcnt[i] = d.intValue();
-////            System.out.println(Allcnt[i]);
-//        }
+        int[] Allcnt = new int[10000000];
+        Double d;
+        for(int i=0;i<10000000;i++){
+            d = Math.random()*100000000;
+            Allcnt[i] = d.intValue();
+//            System.out.println(Allcnt[i]);
+        }
+        long start = System.currentTimeMillis();
+        heapSort(Allcnt);
+        long end = System.currentTimeMillis();
+        System.out.println("花费时间："+(end-start));
 //        int[] a = test.toArray();
 //        HeapByArray instance = new HeapByArray();
 //        instance.copyArray(Allcnt);
@@ -85,13 +89,6 @@ public class HeapByArray {
         System.out.println("总花费时间："+(end-start));
     }
 
-    public static void maxHeapfy(int[] input){
-        for(int i=(input.length-1)/2;i>=0;i--){
-            buildStaticHeap(input,i);
-        }
-    }
-
-
     //适应标准化接口的内部函数，按照下标造堆
     //把当前节点作为根节点造堆，时间复杂度为O(n)
     /** 这里的下滤可以看作让当前待堆化根节点空出来，看看下面有没有要上来的，直接顶上来*/
@@ -111,12 +108,43 @@ public class HeapByArray {
         heapArray[parent] = X;
     }
 
+    //堆化的静态函数
+    public static void maxHeapfy(int[] input){
+        for(int i=(input.length-1)/2;i>=0;i--){
+            buildStaticHeap(input,i);
+        }
+    }
+
+    //有
+    public static void maxHeapfy(int[] input,int end){
+        for(int i=(end-1)/2;i>=0;i--){
+            buildStaticHeap(input,i,end);
+        }
+    }
+
+    //在start与end范围内进行堆化
+    private static void buildStaticHeap(int[] heap,int start,int end){
+        int child,parent,X;
+        parent = start;
+        X = heap[parent];
+        for (parent=start;parent*2+1<=end;parent = child){
+            child = parent*2+1;
+            if(child!=end&&heap[child]<heap[child+1]) child++;
+            if(X>=heap[child]){
+                break;
+            }else{
+                heap[parent] = heap[child];
+            }
+        }
+        heap[parent] = X;
+    }
+
     private static void buildStaticHeap(int[] heap,int index){
         int child,parent,X;
         parent = index;
         X = heap[parent];
-        for (parent=index;parent*2<=heap.length-1;parent = child){
-            child = parent*2;
+        for (parent=index;parent*2+1<=heap.length-1;parent = child){
+            child = parent*2+1;
             if(child!=heap.length-1&&heap[child]<heap[child+1]) child++;
             if(X>=heap[child]){
                 break;
@@ -189,15 +217,29 @@ public class HeapByArray {
     }
 
     /**堆排序（将数组堆化后，让最大/小的堆顶元素与最后的节点交换，再堆化剩余数组，重复操作） */
+    /**每排出一个数字进行一次类似于deleteMax（pop）的操作,时间复杂度为O（logn）*/
+    /**建堆操作耗时O（n） */
     public static void heapSort(int[] toBeSorted){
         maxHeapfy(toBeSorted);
-        CommonUtil.printArray(toBeSorted);
-//        int lenth = toBeSorted.length;
-//        int tmp;
-//        for(int i=0;i<toBeSorted.length;i++){
-//            tmp = toBeSorted[0];
-//            toBeSorted[0] = toBeSorted[lenth-1-i];
-//            toBeSorted[lenth-1-i] = tmp;
-//        }
+        int tmp;
+        int len = toBeSorted.length;
+        for(int i=0;i<toBeSorted.length;i++){
+            tmp = toBeSorted[0];
+            toBeSorted[0] = toBeSorted[len-1-i];
+            toBeSorted[len-1-i] = tmp;
+//            maxHeapfy(toBeSorted,toBeSorted.length-1-i-1);
+            int X = toBeSorted[0];
+            int child,parent;
+            for(parent=0;parent*2+1<=toBeSorted.length-1-i-1;parent = child){
+                child = parent*2+1;
+                if(child!=toBeSorted.length-1&&toBeSorted[child]<toBeSorted[child+1]) child++;
+                if(X<toBeSorted[child]){
+                    toBeSorted[parent] = toBeSorted[child];
+                }else{
+                    break;
+                }
+            }
+            toBeSorted[parent] = X;
+        }
     }
 }
