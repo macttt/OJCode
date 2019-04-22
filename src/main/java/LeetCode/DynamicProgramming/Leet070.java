@@ -1,4 +1,4 @@
-package LeetCode;
+package LeetCode.DynamicProgramming;
 
 /**70. Climbing Stairs
  *
