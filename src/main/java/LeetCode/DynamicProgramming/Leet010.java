@@ -41,6 +41,6 @@ public class Leet010 {
     }
 
     private boolean isMatchChar(char[] sstr,char[] pstr,int slen,int plen){
-
+        return true;
     }
 }
