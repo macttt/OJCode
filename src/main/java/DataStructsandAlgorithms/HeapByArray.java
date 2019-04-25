@@ -67,7 +67,7 @@ public class HeapByArray {
     }
 
 
-    //让copy其他数组进堆，然后进行堆化或者排序
+    //copy其他数组进堆，然后进行堆化或者排序
     public HeapByArray copyArray(int[] source){
         if(heapArray.length<=source.length){
             heapArray = new int[source.length+1];
@@ -219,6 +219,7 @@ public class HeapByArray {
     /**堆排序（将数组堆化后，让最大/小的堆顶元素与最后的节点交换，再堆化剩余数组，重复操作） */
     /**每排出一个数字进行一次类似于deleteMax（pop）的操作,时间复杂度为O（logn）*/
     /**建堆操作耗时O（n） */
+    /**大顶堆的堆排序为正序排列，小顶堆则为逆序*/
     public static void heapSort(int[] toBeSorted){
         maxHeapfy(toBeSorted);
         int tmp;
