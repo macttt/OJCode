@@ -103,10 +103,7 @@ public class QuickSort {
         }
         n[start] = pivot;
     }
-
-
-
-
+    
     public static void quickSortFromWeb(int low, int high,int a[]) {
         int i, j, index;
         if (low > high) {

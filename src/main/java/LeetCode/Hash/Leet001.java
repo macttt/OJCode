@@ -43,6 +43,7 @@ public class Leet001 {
      * 则进行 hashmap.put(10-4,0);这里的0代表数字4的index，
      * 这样就可以避免两个数字的hash冲突问题了,
      * 之后再从读取的数字中进行hashmap.get(nums[index]),若不为空，则返回[hashmap.get(nums[index]),index]
+     * 时间复杂度O(n)
      * */
     public static int[] twoSum(int[] nums, int target) {
         HashMap map = new HashMap();
