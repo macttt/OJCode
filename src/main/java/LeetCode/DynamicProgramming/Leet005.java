@@ -13,6 +13,7 @@ package LeetCode.DynamicProgramming;
  * */
 
 /**增量方法替代遍历式判断是否是回文达到O（n）效果的回文提取*/
+/**有一种Manachar方法，可以在O(n)时间内完成最长回文的判定*/
 public class Leet005 {
     //遍历输入字符串charAt的位置，判断以该字符起始的多长字符串是否是回文
     public String longestPalindrome(String s) {
@@ -60,6 +61,8 @@ public class Leet005 {
         }
         return true;
     }
+
+
 
     public static void main(String[] args){
         Leet005 mn = new Leet005();
