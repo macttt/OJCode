@@ -1,4 +1,4 @@
-package LeetCode.DynamicProgramming;
+package LeetCode.ArrayAndStack;
 
 
 /**

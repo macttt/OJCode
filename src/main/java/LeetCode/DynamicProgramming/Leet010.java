@@ -35,7 +35,7 @@ public class Leet010 {
         boolean[][] dp = new boolean[sLen+1][pLen+1];
         /**dp[0][0]表示s="",p=""*/
         dp[0][0] = true;
-        /**i=0时，s="",检查p是否符合p="#*#*#*#*",实际操作过程中，这一步可以省略*/
+        /**i=0时，s="",检查s是否符合p("#*"),实际操作过程中，这一步可以省略*/
         for(int j=2;j<pLen+1;j+=2){
             if (pChar[j-1] == '*' && dp[0][j-2]) {
                 dp[0][j] = true;

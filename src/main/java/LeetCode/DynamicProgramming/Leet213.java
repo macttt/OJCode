@@ -1,6 +1,7 @@
 package LeetCode.DynamicProgramming;
 
 /**
+ * House Robber II
  * You are a professional robber planning to robBefore houses along a street.
  * Each house has a certain amount of money stashed.
  * All houses at this place are arranged in a circle.
@@ -26,7 +27,7 @@ package LeetCode.DynamicProgramming;
  * */
 public class Leet213 {
     //思路错了，这道题目用递归思想更好解决，数组nums[0,n-1] ,nums[1,n]之中最大的dp数就是问题的解
-    //总体来说时间复杂度是O(2n),因为要算两组数组的rob1解。
+    //总体来说时间复杂度是O(2n),因为要算两组数据的robber解。
     public static int robBefore(int[] nums) {
         int curMax = 0;
         int prevMax = 0;
@@ -58,6 +59,7 @@ public class Leet213 {
         return curMax;
     }
 
+    //将rob1中的代码加以利用
     private static int robber(int nums[],int start,int end){
         int curMax=0;
         int prevMax =0;
