@@ -151,5 +151,5 @@ p = "mis*is*p*."
 
 // TODO 进一步图解
 
-![image-20190506160122883](/Users/chenxiao/Library/Application Support/typora-user-images/image-20190506160122883.png)
+![image-20190506160122883](https://github.com/macttt/OJCode/raw/master/src/main/resources/image/image-20190506160122883.png)
 
