@@ -147,6 +147,7 @@ public class Leet084 {
                 int maxAreaOfCurrentIndex = histogram.isEmpty()?curHeight*i:curHeight*(i-histogram.peek()-1);
                 maxArea = Math.max(maxArea,maxAreaOfCurrentIndex);
             }
+
         }
         return maxArea;
     }
