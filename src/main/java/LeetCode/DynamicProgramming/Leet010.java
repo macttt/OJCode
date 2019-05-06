@@ -24,7 +24,7 @@ package LeetCode.DynamicProgramming;
 
 /**
  * 状态转移方程见代码
- * 实现原理类似于老题Edit Distance中，DP数组在外层加了一层，满足了一共3种状态迁移的过程
+ * 实现原理类似于题Edit Distance中，DP数组在外层加了一层，满足了一共3种状态迁移的过程
  * */
 public class Leet010 {
     public static boolean isMatch(String s, String p) {

@@ -125,17 +125,27 @@ public class Leet084 {
         return max_area;
     }
 
+    /**
+     * 原理
+     * */
     public static int largestRectangleArea(int[] heights){
         int maxArea = 0;
         Stack<Integer> histogram = new Stack();
         int i = 0;
         int n = heights.length;
-        while(i<n){
+        int nowHeight;
+        while(i<=n){
+            //最后加一个高度为0的柱图，将还在栈中的数字pop出来
+            nowHeight = (i==n)?0:heights[i];
             //判断是否能进栈
-            if(histogram.isEmpty()||heights[i]>heights[histogram.peek()]){
+            if(histogram.isEmpty()||nowHeight>heights[histogram.peek()]){
+                //注意，这里推入栈的是柱状图的下标索引i
                 histogram.push(i++);
             }else{
-
+                //当前栈顶索引为被pop出来的索引的左边界，而i则是右边界
+                int curHeight = heights[histogram.pop()];
+                int maxAreaOfCurrentIndex = histogram.isEmpty()?curHeight*i:curHeight*(i-histogram.peek()-1);
+                maxArea = Math.max(maxArea,maxAreaOfCurrentIndex);
             }
         }
         return maxArea;
