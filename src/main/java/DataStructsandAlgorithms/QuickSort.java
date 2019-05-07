@@ -104,6 +104,7 @@ public class QuickSort {
         n[start] = pivot;
     }
 
+    /**网上复制来的代码*/
     public static void quickSortFromWeb(int low, int high,int a[]) {
         int i, j, index;
         if (low > high) {
@@ -127,13 +128,10 @@ public class QuickSort {
                 a[j--] = a[i];
                 printNumbers(a);
             }
-
-
         }
         a[i] = index;// 将基准数值替换回 a[i]
         quickSortFromWeb( low, i - 1,a); // 对低子表进行递归排序
         quickSortFromWeb( i + 1, high,a); // 对高子表进行递归排序
-
     }
 
     public static void printNumbers(int[] n){

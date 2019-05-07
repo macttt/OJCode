@@ -31,10 +31,13 @@ public class CommonUtil {
     }
 
     /** 用于查看java源代码，熟悉代码用测试函数*/
-    public static void lookSource(){
+    public static void getJavaSourceCode(){
 
         HashMap map = new HashMap();
         PriorityQueue heap = new PriorityQueue();
+        StringBuilder stringBuilder = new StringBuilder("123");
+        StringBuffer stringBuffer = new StringBuffer("123");
+        String string = new String("123");
 
     }
 }
