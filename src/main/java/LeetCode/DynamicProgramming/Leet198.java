@@ -39,6 +39,9 @@ public class Leet198 {
     /**
      * 典型的01背包问题，在问题中加了状态转移限制
      * 状态转移方程：
+     * 判断dp[i-2]+nums[i]>dp[i-1]（当前数加上，前第二个数的dp最大值是否大于前一个数的dp最大值）
+     * 若成立，则取 dp[i] = dp[i-2]+nums[i]
+     * 否则，取 dp[i] = dp[i-1]
      * */
     public static int rob(int[] nums) {
         int[] dp = new int[nums.length];

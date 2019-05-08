@@ -40,4 +40,8 @@ public class CommonUtil {
         String string = new String("123");
 
     }
+
+    public static void print(Object a){
+        System.out.println(a);
+    }
 }
