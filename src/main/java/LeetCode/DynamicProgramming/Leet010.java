@@ -24,7 +24,7 @@ package LeetCode.DynamicProgramming;
 
 /**
  * 状态转移方程见代码
- * 实现原理类似于题Edit Distance中，DP数组在外层加了一层，满足了一共3种状态迁移的过程
+ * 实现原理类似于题Edit Distance中，DP数组在外层加了一层，满足了边界条件与3种状态迁移过程的初始化
  * */
 public class Leet010 {
     public static boolean isMatch(String s, String p) {
@@ -55,7 +55,8 @@ public class Leet010 {
                          * 此时dp[i][j]=dp[i][j-2];
                          * 2.字符相同，这个*只记一个数，当前j不计数，例如s="aaab",p="aaa*b"
                          * 此时dp[i][j]=dp[i][j-1];
-                         * 3.*记两个及以上的数时，取其正上方的状态即可
+                         * 3.*记两个及以上的数时，取其正上方的状态即可，例如s="aaaaab",p="aa*b"，有递进的
+                         * (s="aaaaa",p="aa*")->(s="aaaa",p="aa*")->(s="aaa",p="aa*"，结果为True),可推出匹配
                          * 此时dp[i][j]=dp[i-1][j]
                          *
                          * 因此有 dp[i][j] = dp[i][j-2]||dp[i][j-1]||dp[i-1][j];
