@@ -38,6 +38,7 @@ public class CommonUtil {
         StringBuilder stringBuilder = new StringBuilder("123");
         StringBuffer stringBuffer = new StringBuffer("123");
         String string = new String("123");
+        //测试git文件为何不存在
 
     }
 
