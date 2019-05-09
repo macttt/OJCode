@@ -30,9 +30,41 @@ public class CommonUtils {
         System.out.println();
     }
 
+    /** 根据数组生成链表,方便测试*/
+    public ListNode createListFromArray(int[] input){
+        if(input == null||input.length==0) return null;
+        ListNode head = new ListNode(input[0]);
+        ListNode tmp = head;
+        for(int i = 1;i<input.length;i++){
+            ListNode now = new ListNode(input[i]);
+            tmp.next = now;
+            tmp = now;
+        }
+        return head;
+    }
+
+    /** 根据数组生成二叉树，方便测试*/
+    public TreeNode createTreeFromArray(int[] input){
+        if(input == null||input.length==0) return null;
+        TreeNode root = createSubTree(input,0);
+        return root;
+    }
+
+    /**
+     * 考虑到二叉树无法找到父节点的特性，用递归来完成树的构造
+     * 若是之后做双向二叉树节点，再来简化
+     * */
+    private TreeNode createSubTree(int[] input,int index){
+        if(index>input.length-1) return null;
+        TreeNode subroot = new TreeNode(input[index]);
+        subroot.left = createSubTree(input,index*2+1);
+        subroot.right = createSubTree(input,index*2+2);
+        return subroot;
+    }
+
+
     /** 用于查看java源代码，熟悉代码用测试函数*/
     public static void getJavaSourceCode(){
-
         HashMap map = new HashMap();
         PriorityQueue heap = new PriorityQueue();
         StringBuilder stringBuilder = new StringBuilder("123");
@@ -45,4 +77,17 @@ public class CommonUtils {
     public static void print(Object a){
         System.out.println(a);
     }
+}
+/** 链表节点*/
+class ListNode{
+    int val;
+    ListNode next;
+    public ListNode(int x){val = x;}
+}
+
+/** 二叉树节点*/
+class TreeNode{
+    int val;
+    TreeNode left,right;
+    public TreeNode(int x){val = x;}
 }
