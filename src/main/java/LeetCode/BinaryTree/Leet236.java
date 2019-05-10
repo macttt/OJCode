@@ -75,6 +75,8 @@ public class Leet236 {
      * 这样的时间复杂度为O(n)（搜索p、q两个节点的index用时）+ O(n)(搜索LCA节点的用时)
      * 最多用时O(2n)
      * 这种思路莫名其妙地没法AC，气得要死，只好换成网上的最优算法
+     * 放在自己机器上跑，发现爆栈了，问题时上面的解决方法应该需求更多栈
+     *
      * */
     private int indexP = 0;
     private int indexQ = 0;
