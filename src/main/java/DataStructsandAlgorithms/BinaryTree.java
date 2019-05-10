@@ -16,9 +16,4 @@ public class BinaryTree {
      * 二叉树节点式存储，容易构造，直观体现数据结构，不易于查找，同时难以维护
      * */
 }
-class TreeNode{
-    int val;
-    TreeNode left;
-    TreeNode right;
-    public TreeNode(int x){val=x;}
-}
+

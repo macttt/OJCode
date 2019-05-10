@@ -1,6 +1,9 @@
 package LeetCode.BinaryTree;
 
-import static Utils.CommonUtil.print;
+
+import DataStructsandAlgorithms.TreeNode;
+import static Utils.CommonUtil.*;
+
 
 /**
  * House Robber III
@@ -39,12 +42,12 @@ import static Utils.CommonUtil.print;
  * */
 
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
+//class TreeNode {
+//    int val;
+//    TreeNode left;
+//    TreeNode right;
+//    TreeNode(int x) { val = x; }
+//}
 
 public class Leet337 {
     /**
@@ -72,7 +75,7 @@ public class Leet337 {
     }
 
     /**
-     * 这个方法可以不用递归地递进获取树的动态规划值
+     * 这个方法可以递归地递进获取树的动态规划状态
      * */
     private int[] robSub2(TreeNode root) {
         if (root == null) return new int[2];
