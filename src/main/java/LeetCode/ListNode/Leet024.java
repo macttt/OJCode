@@ -51,9 +51,11 @@ public class Leet024 {
      * 既然是链表转置，当然还可以用栈解决，在之后的25题尝试先用栈进行转置
      * */
 
+
+    class ListNode{
+        int val;
+        ListNode next;
+        public ListNode(int x){val=x;}
+    }
 }
-class ListNode{
-    int val;
-    ListNode next;
-    public ListNode(int x){val=x;}
-}
+
