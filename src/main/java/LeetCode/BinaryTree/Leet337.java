@@ -83,35 +83,36 @@ public class Leet337 {
         int[] left = robSub2(root.left);
         int[] right = robSub2(root.right);
         int[] res = new int[2];
-
+        //res[0]代表robber不抢root节点
         res[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        //res[1]代表robber抢了root节点，因此递归地调用是没问题的
         res[1] = root.val + left[0] + right[0];
 
         return res;
     }
 
-    public int robMemo(TreeNode root) {
-        int height = hight(root);
-        int[] tree = new int[(1<<height)-1];
-        return robMaxMemo(root,tree,0);
-    }
+//    public int robMemo(TreeNode root) {
+//        int height = hight(root);
+//        int[] tree = new int[(1<<height)-1];
+//        return robMaxMemo(root,tree,0);
+//    }
 
     //这种备忘录式的方法，内存爆了，无法通过，废弃
-    private int robMaxMemo(TreeNode root, int[] tree, int index){
-        if(root==null){
-            return 0;
-        }
-        if(tree[index]>0){
-            return tree[index];
-        }
-
-        int robLast = robMaxMemo(root.left,tree,index*2+1) + robMaxMemo(root.right,tree,index*2+2);
-        int robNow = root.val + ((root.left==null)?0: robMaxMemo(root.left.left,tree,(index*2+1)*2+1) + robMaxMemo(root.left.right,tree,(index*2+1)*2+2))
-                + ((root.right==null)?0: robMaxMemo(root.right.left,tree,(index*2+2)*2+1) + robMaxMemo(root.right.right,tree,(index*2+2)*2+2));
-        tree[index] = robLast > robNow ? robLast : robNow;
-
-        return tree[index];
-    }
+//    private int robMaxMemo(TreeNode root, int[] tree, int index){
+//        if(root==null){
+//            return 0;
+//        }
+//        if(tree[index]>0){
+//            return tree[index];
+//        }
+//
+//        int robLast = robMaxMemo(root.left,tree,index*2+1) + robMaxMemo(root.right,tree,index*2+2);
+//        int robNow = root.val + ((root.left==null)?0: robMaxMemo(root.left.left,tree,(index*2+1)*2+1) + robMaxMemo(root.left.right,tree,(index*2+1)*2+2))
+//                + ((root.right==null)?0: robMaxMemo(root.right.left,tree,(index*2+2)*2+1) + robMaxMemo(root.right.right,tree,(index*2+2)*2+2));
+//        tree[index] = robLast > robNow ? robLast : robNow;
+//
+//        return tree[index];
+//    }
 
 
 
