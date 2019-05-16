@@ -1,7 +1,9 @@
 package Utils;
 
+import DataStructsandAlgorithms.ListNode;
 import DataStructsandAlgorithms.TreeNode;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -73,16 +75,16 @@ public class CommonUtils {
         StringBuffer stringBuffer = new StringBuffer("123");
         String string = new String("123");
         //测试git文件为何不存在
-
     }
 
     public static void print(Object a){
         System.out.println(a);
     }
-}
-/** 链表节点*/
-class ListNode{
-    int val;
-    ListNode next;
-    public ListNode(int x){val = x;}
+
+    public static void printList(ListNode input){
+        while(input!=null){
+            System.out.print(input.val+" ");
+            input = input.next;
+        }
+    }
 }

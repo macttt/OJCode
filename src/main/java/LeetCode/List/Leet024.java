@@ -1,4 +1,7 @@
-package LeetCode.ListNode;
+package LeetCode.List;
+
+import DataStructsandAlgorithms.ListNode;
+
 /**
  * 24. Swap Nodes in Pairs
  * Given a linked list, swap every two adjacent nodes and return its head.
@@ -35,6 +38,7 @@ public class Leet024 {
 
     /**
      * 更简单的submission,使用递归，非常非常简单的代码，耳目一新
+     * *LeetCode的讨论组中看到的代码
      * */
     public ListNode swapPairsFromWeb(ListNode head) {
         if ((head == null)||(head.next == null))
@@ -50,12 +54,5 @@ public class Leet024 {
     /**
      * 既然是链表转置，当然还可以用栈解决，在之后的25题尝试先用栈进行转置
      * */
-
-
-    class ListNode{
-        int val;
-        ListNode next;
-        public ListNode(int x){val=x;}
-    }
 }
 
