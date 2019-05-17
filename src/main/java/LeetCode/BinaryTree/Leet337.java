@@ -2,7 +2,7 @@ package LeetCode.BinaryTree;
 
 
 import DataStructsandAlgorithms.TreeNode;
-import static Utils.CommonUtil.*;
+import static Utils.CommonUtils.*;
 
 
 /**

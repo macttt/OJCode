@@ -2,6 +2,7 @@ package Utils;
 
 import DataStructsandAlgorithms.ListNode;
 import DataStructsandAlgorithms.TreeNode;
+import Interface.ListToBePrinted;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.HashMap;
@@ -66,6 +67,14 @@ public class CommonUtils {
         return subroot;
     }
 
+    /**打印完整链表，该链表节点类型需要包含ListToBePrinted接口*/
+    public static void printList(ListToBePrinted input){
+        while(input!=null){
+            System.out.print(input+" ");
+            input = input.getNext();
+        }
+    }
+
 
     /** 用于查看java源代码，熟悉代码用测试函数*/
     public static void getJavaSourceCode(){
@@ -81,10 +90,5 @@ public class CommonUtils {
         System.out.println(a);
     }
 
-    public static void printList(ListNode input){
-        while(input!=null){
-            System.out.print(input.val+" ");
-            input = input.next;
-        }
-    }
+
 }

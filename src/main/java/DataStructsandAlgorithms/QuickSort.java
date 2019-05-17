@@ -1,6 +1,6 @@
 package DataStructsandAlgorithms;
 
-import static Utils.CommonUtil.swap;
+import static Utils.CommonUtils.swap;
 
 public class QuickSort {
     //快排

@@ -1,7 +1,7 @@
 package DataStructsandAlgorithms;
 
 
-import Utils.CommonUtil;
+import Utils.CommonUtils;
 
 import java.util.Arrays;
 
@@ -213,7 +213,7 @@ public class HeapByArray {
     //打印堆内节点
     public void printHeapArray(){
         int[] toBePrinted = Arrays.copyOfRange(this.heapArray,1,heapArray[0]+1);
-        CommonUtil.printArray(toBePrinted);
+        CommonUtils.printArray(toBePrinted);
     }
 
     /**堆排序（将数组堆化后，让最大/小的堆顶元素与最后的节点交换，再堆化剩余数组，重复操作） */
