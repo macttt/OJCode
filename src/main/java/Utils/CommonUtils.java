@@ -5,6 +5,7 @@ import DataStructsandAlgorithms.TreeNode;
 import Interface.ListToBePrinted;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -80,6 +81,7 @@ public class CommonUtils {
     public static void getJavaSourceCode(){
         HashMap map = new HashMap();
         PriorityQueue heap = new PriorityQueue();
+        ArrayList al = new ArrayList();
         StringBuilder stringBuilder = new StringBuilder("123");
         StringBuffer stringBuffer = new StringBuffer("123");
         String string = new String("123");

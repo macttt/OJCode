@@ -90,7 +90,7 @@ public class QuickSort {
     }
 
     /** 看浙大mooc教学之后写的快排 */
-    public static void quickSort(int start,int end,int[] n){
+    public static void quickSortInTerm(int start,int end,int[] n){
         int pivot = n[end];
         while (start<end){
             while(++start<pivot&&start<end);
