@@ -1,6 +1,5 @@
 package Thread;
 
-import com.sun.xml.internal.xsom.impl.scd.Step;
 
 public class TestYield implements Runnable{
     static int threadCount = 1;
