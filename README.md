@@ -6,4 +6,6 @@ OJcode
 
 一些[笔记与心得](https://github.com/macttt/OJCode/tree/master/Notes)
 
+另一些[笔记与心得（Issues中）](https://github.com/macttt/OJCode/issues)
+
 
