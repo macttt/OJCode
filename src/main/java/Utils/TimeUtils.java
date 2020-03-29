@@ -16,12 +16,8 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 import java.util.TimeZone;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TimeUtils {
-
-    private final static Logger LOGGER = LoggerFactory.getLogger(TimeUtils.class);
 
     public static final String FORMAT_MONTH = "YYYYMM";
     public static final String FORMAT_DAY = "YYYYMMdd";
@@ -104,7 +100,7 @@ public class TimeUtils {
             SimpleDateFormat sdf= new SimpleDateFormat(FORMAT_TO_DAY);
             return sdf.parse(date);
         }catch(ParseException e){
-            LOGGER.error("stringDateToUdate error - {}",e.getMessage());
+            System.out.print(e.getMessage());
         }
         return null;
     }
@@ -171,7 +167,6 @@ public class TimeUtils {
             DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern(FORMAT_TO_DAY);
             return plusDays.format(dayFormatter);
         }catch (Exception e){
-            LOGGER.error("format reqDate = {} and reqTime = {} to workDate failed",reqDate,reqTime,e);
             return null;
         }
     }
@@ -217,7 +212,6 @@ public class TimeUtils {
             dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
             return dateFormat.parse(date).getTime();
         } catch(Exception e) {
-            LOGGER.error("dateStrToTimestamp error - {}",e);
         }
         return null;
     }
@@ -228,7 +222,6 @@ public class TimeUtils {
             dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
             return dateFormat.parse(date).getTime();
         } catch(Exception e) {
-            LOGGER.error("dateTimeStrToTimestamp error - {}",e);
         }
         return null;
     }
@@ -240,7 +233,6 @@ public class TimeUtils {
             Date date = format.parse(formatterDate);
             return date;
         } catch (ParseException e) {
-            LOGGER.error("{} format failed ",formatterDate,e);
         }
         return null;
     }
